@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StoryAD-QA | StoryTeller</title>
+    <meta name="description" content="StoryAD-QA: QA benchmark released with the ECCV 2026 StoryTeller paper.">
+    <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <div class="brand">StoryTeller / StoryAD-QA</div>
+        <div class="nav-links">
+          <a href="#motivation">Motivation</a>
+          <a href="#dataset">Dataset</a>
+          <a href="#evaluation">Evaluation</a>
+          <a href="#prompts">Prompts</a>
+          <a href="#citation">Citation</a>
+        </div>
+      </nav>
+      <div class="hero-inner">
+        <p class="venue">ECCV 2026 public release</p>
+        <h1>StoryAD-QA</h1>
+        <p class="subtitle">
+          A question-answering benchmark for evaluating story-level understanding in generated audio descriptions.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/shahm10/ECCV2026_StoryTeller_StoryAD_QA">GitHub</a>
+          <a class="button" href="../data/StoryAD-QA/">QA CSVs</a>
+          <a class="button" href="../prompts/">Prompts</a>
+          <a class="button" href="../evaluation/evaluate_storyad_qa.py">Evaluation Code</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="motivation">
+        <h2>Why StoryAD-QA?</h2>
+        <p>
+          The StoryTeller paper studies long-form audio description for movies. A strong AD system should not only
+          describe the current frame; it should preserve narrative context, resolve recurring characters, and explain
+          why events matter as the story unfolds.
+        </p>
+        <p>
+          Standard captioning metrics are useful but limited: lexical overlap does not directly measure whether a
+          generated AD contains the information needed to understand the story. StoryAD-QA was built to evaluate that
+          missing dimension. It asks multiple-choice questions about actions, events, and narrative context, and scores
+          whether a model's generated description supports the correct answer.
+        </p>
+        <div class="note">
+          This release contains QA annotations, answer keys, prompts, and evaluation code. It does not include movie videos or other media assets.
+        </div>
+      </section>
+
+      <section id="dataset">
+        <h2>Dataset Release</h2>
+        <div class="grid">
+          <div class="metric"><strong>2,572</strong><span>QA pairs</span></div>
+          <div class="metric"><strong>7</strong><span>CSV files</span></div>
+          <div class="metric"><strong>5</strong><span>answer choices per question</span></div>
+          <div class="metric"><strong>0</strong><span>videos redistributed</span></div>
+        </div>
+
+        <h3>Files</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>CSV</th>
+              <th>Questions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>movie_qa_v5_30s_gemini-3-flash-preview.csv</td><td>858</td></tr>
+            <tr><td>movie_qa_v5_60s_gemini-3-flash-preview.csv</td><td>430</td></tr>
+            <tr><td>movie_qa_v5_120s_gemini-3-flash-preview.csv</td><td>212</td></tr>
+            <tr><td>movie_qa_v5_240s_gemini-3-flash-preview.csv</td><td>109</td></tr>
+            <tr><td>movie_qa_v9_60s_gemini-3-flash-preview.csv</td><td>449</td></tr>
+            <tr><td>movie_qa_v9_90s_gemini-3-flash-preview.csv</td><td>294</td></tr>
+            <tr><td>movie_qa_v9_120s_gemini-3-flash-preview.csv</td><td>220</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Schema</h3>
+        <pre><code>file, raw_response, question, option_A, option_B, option_C, option_D, option_E, correct_answer, rationale</code></pre>
+        <p>
+          We also provide question-only CSVs and answer-key CSVs for workflows that separate benchmark distribution
+          from answer-key evaluation.
+        </p>
+      </section>
+
+      <section id="evaluation">
+        <h2>Evaluation Code</h2>
+        <p>
+          The release includes a lightweight evaluator for multiple-choice accuracy. Predictions can be keyed by file
+          identifier, row index, or both.
+        </p>
+        <pre><code>pip install -r evaluation/requirements.txt
+python evaluation/evaluate_storyad_qa.py \
+  --gold data/StoryAD-QA/movie_qa_v5_30s_gemini-3-flash-preview.csv \
+  --predictions predictions/my_model_v5_30s.csv</code></pre>
+      </section>
+
+      <section id="prompts">
+        <h2>Prompts</h2>
+        <p>
+          We release the prompts used to create, regenerate, and verify StoryAD-QA questions so that the benchmark
+          construction process is transparent and reproducible.
+        </p>
+        <div class="two-col">
+          <div>
+            <h3>Generation and Regeneration</h3>
+            <p>Templates for creating grounded five-choice QA items and rewriting failed questions.</p>
+          </div>
+          <div>
+            <h3>Verification</h3>
+            <p>A strict checklist for grounding, plausibility, correctness, and minor-fix decisions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="paper">
+        <h2>Relation To StoryTeller</h2>
+        <p>
+          StoryTeller is a training-free framework for long-form audio description with narrative memory. StoryAD-QA is
+          released as the QA-based evaluation benchmark used to test whether AD outputs preserve story understanding.
+          The benchmark complements lexical AD metrics by asking answerable questions about the generated narrative.
+        </p>
+      </section>
+
+      <section id="citation">
+        <h2>Citation</h2>
+        <p>Final ECCV metadata will be added after publication.</p>
+        <pre><code>@inproceedings{storyteller2026storyadqa,
+  title = {StoryTeller: Training-Free Long-Form Audio Description with Narrative Memory},
+  author = {TBD},
+  booktitle = {European Conference on Computer Vision},
+  year = {2026}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      StoryAD-QA is released to support the ECCV 2026 StoryTeller paper. No video files are distributed.
+    </footer>
+  </body>
+</html>

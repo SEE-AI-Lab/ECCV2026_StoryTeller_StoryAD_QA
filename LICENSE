@@ -1,0 +1,10 @@
+Release license to be finalized before public publication.
+
+Recommended split:
+
+- Code: MIT License or Apache License 2.0
+- Dataset annotations: CC BY-NC 4.0 or another license approved by the project authors
+
+This repository does not include movie video files, audio, frames, or subtitles.
+Users are responsible for ensuring lawful access to any media referenced by clip identifiers.
+

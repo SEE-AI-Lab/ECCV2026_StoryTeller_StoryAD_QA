@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use StoryAD-QA, please cite the StoryTeller ECCV paper."
+title: "StoryTeller: Training-Free Long-Form Audio Description with Narrative Memory"
+authors:
+  - family-names: "TBD"
+    given-names: "TBD"
+conference:
+  name: "European Conference on Computer Vision"
+  abbreviation: "ECCV"
+year: 2026
+url: "https://github.com/shahm10/ECCV2026_StoryTeller_StoryAD_QA"
+repository-code: "https://github.com/shahm10/ECCV2026_StoryTeller_StoryAD_QA"
+license: "TBD"
