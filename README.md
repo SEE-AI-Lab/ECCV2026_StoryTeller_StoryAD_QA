@@ -55,7 +55,6 @@ prompts/
   storyadqa_track_a_generation.md
   storyadqa_track_b_generation.md
   storyadqa_answering.md
-  storyteller_fact_verification.md
 docs/
   index.html                     # GitHub Pages site
 ```
@@ -132,7 +131,6 @@ The `prompts/` folder includes the public prompt templates for:
 - Track A question generation
 - Track B context-conditioned question generation
 - AD-only answer selection
-- StoryTeller video-grounded fact verification
 
 These prompts are included so the dataset construction and evaluation protocol are transparent.
 
